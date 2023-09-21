@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.0.2",
     "ai": "2.2.13",
     "next": "13.4.12",
     "openai": "4.2.0",
