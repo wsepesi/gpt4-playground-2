@@ -1,3 +1,3 @@
 # README
 
-Clone of Vercel AI SDK to use GPT4
+Light(er) clone of Vercel AI SDK to use GPT4
