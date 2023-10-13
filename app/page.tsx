@@ -1,6 +1,8 @@
 'use client';
 
-import { useChat } from 'ai/react';
+import { UseChatOptions, useChat } from 'ai/react';
+
+import { Message } from 'ai';
 
 const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>, handlingFunc: (e: React.ChangeEvent<HTMLTextAreaElement>) => void) => {
   // adjust the height of the textarea if we need to
@@ -9,8 +11,37 @@ const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>, handlingFunc: (
   handlingFunc(e);
 }
 
+const handleError = (e: Error) => {
+  alert(e.message);
+  console.error(e);
+}
+
+const handleResponse = (res: Response) => {
+  if (!res.ok) {
+    console.error(res, "error: response");
+  } else {
+    console.log("success: response", res);
+  }
+}
+
+const handleFinish = (res: Message) => {
+  console.log("finish: response", res);
+}
+
+const options: UseChatOptions = {
+  onError(error) {
+      handleError(error);
+  },
+  onResponse(res) {
+      handleResponse(res);
+  },
+  onFinish(res) {
+      handleFinish(res);
+  },
+}
+
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit, data } = useChat();
+  const { messages, input, handleInputChange, handleSubmit, data } = useChat(options);
   return (
     <div className="relative flex flex-col-reverse w-full max-w-md py-24 mx-auto overflow-auto h-[100vh]">
         {messages.length > 0
