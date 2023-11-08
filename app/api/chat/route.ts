@@ -3,7 +3,8 @@ import { OpenAIStream, StreamingTextResponse } from 'ai';
 // ./app/api/chat/route.ts
 import OpenAI from 'openai';
 
-const MODEL = 'gpt-4-1106-preview' // 'gpt-4'
+// const MODEL = 'gpt-4-1106-preview'
+const MODEL = 'gpt-4-0613'
 
 // Create an OpenAI API client (that's edge friendly!)
 const openai = new OpenAI({
